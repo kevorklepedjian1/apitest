@@ -8,10 +8,19 @@ const jwt = require("jsonwebtoken");
 const dbConnect = require("./db/dbConnect");
 const User = require("./db/userModel");
 const auth = require("./auth");
+const cors = require('cors');
 
 // execute database connection
 dbConnect();
 
+app.use(cors());
+
+const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 // Curb Cores Error by adding a header here
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
