@@ -101,7 +101,7 @@ app.post("/login", (request, response) => {
           const token = jwt.sign(
             {
               userId: user._id,
-              userEmail: user.email,
+              userName: user.username,
             },
             "RANDOM-TOKEN",
             { expiresIn: "24h" }
@@ -110,7 +110,7 @@ app.post("/login", (request, response) => {
           //   return success response
           response.status(200).send({
             message: "Login Successful",
-            email: user.email,
+            username: user.username,
             token,
           });
         })
